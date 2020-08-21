@@ -1,0 +1,35 @@
+{
+    "name": "casperlaitw/laravel-admob-ssv",
+    "description": "Google Admob server-side verification php library",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "admob",
+        "server-side verification",
+        "ssv",
+        "google",
+        "firebase",
+        "laravel",
+        "ad"
+    ],
+    "homepage": "https://github.com/CasperLaiTW/laravel-admob-ssv",
+    "authors": [
+        {
+            "name": "Casper Lai",
+            "email": "casper.lai@sleepingdesign.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "eastwest/json": "^3.0",
+        "illuminate/support": "~5.6|^6.0|^7.0|^8.0",
+        "illuminate/http": "~5.6|^6.0|^7.0|^8.0",
+        "starkbank/ecdsa": "^0.0.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Casperlaitw\\LaravelAdmobSsv\\": "src"
+        }
+    }
+}
