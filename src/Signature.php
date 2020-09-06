@@ -28,7 +28,6 @@ class Signature
      */
     public static function create($signature)
     {
-        return \EllipticCurve\Signature::fromBase64($signature);
+        return \EllipticCurve\Signature::fromBase64(str_replace(['-', '_'], ['+', '/'], $signature));
     }
-
 }
