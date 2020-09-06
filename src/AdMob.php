@@ -40,8 +40,13 @@ class AdMob
 
         $publicKey = PublicKey::createPublicKeyFromRequest($this->request);
         $signature = Signature::createFromRequest($this->request);
-        $message = $this->request->except(['key_id', 'signature']);
 
+        $message = collect($this->request->except(['key_id', 'signature']))
+            ->map(function ($value, $key) {
+                return "{$key}={$value}";
+            })
+            ->implode('&');
+        
         return Ecdsa::verify($message, $signature, $publicKey);
     }
 
