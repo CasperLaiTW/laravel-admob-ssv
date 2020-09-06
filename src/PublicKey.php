@@ -75,7 +75,7 @@ class PublicKey
      */
     public static function createPublicKeyFromRequest(Request $request)
     {
-        return self::createPublicKey($request->query('key_id'));
+        return self::createPublicKey($request->input('key_id'));
     }
 
     /**

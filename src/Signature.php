@@ -18,7 +18,7 @@ class Signature
      */
     public static function createFromRequest(Request $request)
     {
-        return self::create($request->query('signature'));
+        return self::create($request->input('signature'));
     }
 
     /**
@@ -28,7 +28,7 @@ class Signature
      */
     public static function create($signature)
     {
-        return \EllipticCurve\Signature::fromDer($signature);
+        return \EllipticCurve\Signature::fromBase64($signature);
     }
 
 }
