@@ -4,6 +4,10 @@ namespace Casperlaitw\LaravelAdmobSsv;
 
 use EllipticCurve\Ecdsa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\LaravelCacheStorage;
+use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
 
 /**
  * Class AdMob
@@ -25,6 +29,7 @@ class AdMob
     public function __construct(Request $request)
     {
         $this->request = $request;
+        $this->configureCache();
     }
 
     /**
@@ -46,7 +51,7 @@ class AdMob
                 return "{$key}={$value}";
             })
             ->implode('&');
-        
+
         return Ecdsa::verify($message, $signature, $publicKey);
     }
 
@@ -57,5 +62,20 @@ class AdMob
     public function failed()
     {
         return !$this->validate();
+    }
+
+    /**
+     * Using Laravel default cache
+     */
+    protected function configureCache()
+    {
+        PublicKey::cacheThrough(function () {
+            return new CacheMiddleware(
+                new GreedyCacheStrategy(
+                    new LaravelCacheStorage(Cache::store('redis')),
+                    43200
+                )
+            );
+        });
     }
 }
