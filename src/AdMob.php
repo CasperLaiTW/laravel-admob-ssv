@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Kevinrob\GuzzleCache\CacheMiddleware;
 use Kevinrob\GuzzleCache\Storage\LaravelCacheStorage;
-use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
+use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
 
 /**
  * Class AdMob
@@ -71,10 +71,9 @@ class AdMob
     {
         PublicKey::cacheThrough(function () {
             return new CacheMiddleware(
-                new PrivateCacheStrategy(
-                    new LaravelCacheStorage(
-                        Cache::store()
-                    )
+                new GreedyCacheStrategy(
+                    new LaravelCacheStorage(Cache::store('redis')),
+                    43200
                 )
             );
         });
