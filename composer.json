@@ -23,8 +23,8 @@
         "php": ">=7.0",
         "guzzlehttp/guzzle": "^6.0|^7.0",
         "eastwest/json": "^3.0",
-        "illuminate/support": "~5.6|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
-        "illuminate/http": "~5.6|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/support": "~5.6|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+        "illuminate/http": "~5.6|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
         "starkbank/ecdsa": "^2.1",
         "kevinrob/guzzle-cache-middleware": "^3.3|^4.0|^5.0"
     },
